@@ -33,7 +33,7 @@ const authLogin = async (req = request, res = response) => {
   }
 
   /* 4. Generar el token */
-  const token = await createAccessToken(user._id)
+  const token = await createAccessToken(user._id, user.role)
   res.cookie('token', token)
 
   res.status(200).json({
@@ -42,8 +42,6 @@ const authLogin = async (req = request, res = response) => {
     user,
   })
 }
-
-
 const authRegister = async (req = request, res = response) => {
 
 
@@ -61,7 +59,7 @@ const authRegister = async (req = request, res = response) => {
 
   user.password = hashPassword(password)
 
-  const token = await createAccessToken(user._id)
+  const token = await createAccessToken(user._id, user.role)
   res.cookie('token', token)
 
   try {

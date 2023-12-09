@@ -14,12 +14,19 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
+    },
+    role: {
+      type: String, 
+      enum: ['admin', 'user'],
+      default: 'user'
     }
   },
   {
     timestamps: true,
   }
 );
+
+userSchema.index({ role: 'text' })
 
 userSchema.method("toJSON", function () {
   const { __v, _id, password, ...object } = this.toObject();

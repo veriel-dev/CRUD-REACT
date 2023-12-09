@@ -5,6 +5,9 @@ import { dbConnect } from './db/db.js'
 
 import authRoutes from './routes/auth.routes.js'
 import tastksRoutes from './routes/tasks.routes.js'
+import seedRoutes from './routes/seed.routes.js'
+import userRoutes from './routes/user.routes.js'
+
 class Server {
   constructor() {
     this.app = express()
@@ -23,6 +26,8 @@ class Server {
   routes() {
     this.app.use('/api/auth', authRoutes)
     this.app.use('/api/tasks', tastksRoutes)
+    this.app.use('/api/seed', seedRoutes)
+    this.app.use('/api/users', userRoutes)
   }
 
   async dbConnection() {

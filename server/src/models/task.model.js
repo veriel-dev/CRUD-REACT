@@ -13,6 +13,14 @@ const taskSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  status: {
+    type: String, 
+    enum: ['pending', 'completed', 'in-progress'],
+    default: 'pending'
+  },
+  img: {
+    type: String,
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

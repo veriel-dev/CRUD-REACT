@@ -1,39 +1,6 @@
-import { request, response } from "express";
-
-/* 
-1. ) Haciendo uso de expres-validator
-
-import { body, validationResult } from 'express-validator'
-
-const validateUsername = body('username').isLength({ min: 3, max: 20 }).withMessage('El nombre de usuario debe tener entre 3 y 20 caracteres')
-const validateEmail = body('email').isEmail().withMessage('El correo electrónico no es válido')
-const validatePassword = body('password').isLength({ min: 6 }).withMessage('La contraseña debe tener al menos 6 caracteres')
-
-const handleValidationErrors = (req, res, next) => {
-  const errors = validationResult(req)
-
-  if (errors) {
-    return res.status(400).json({
-      ok: false,
-      errors: errors.array()
-    })
-  }
-  next()
-}
-
-export {
-  validateUsername,
-  validateEmail,
-  validatePassword,
-  handleValidationErrors
-} */
-
-
-
-/* Sin usar express-validator 
-  -Propagamos el error por la respuesta de cada uno de los middlewares que usamos para validar los datos de entrada
-*/
-
+import { request, response } from "express"
+import { statusTask } from "../config.js"
+import multer from 'multer'
 
 const validationError = (req = request, res = response, next) => {
   const err = res.err
@@ -118,11 +85,60 @@ const validateDescription = (req = request, res = response, next) => {
   }
   next()
 }
+
+const validationStatus = (req = request, res = response, next) => {
+  const { status } = req.body
+
+  !res.err && (res.err = [])
+
+  if( !status || status === '' || !statusTask.includes(status) ){
+    const errStatus = new Error('El estado de la tarea no es válido')
+    res.err = [...res.err, {
+      errorValidation: "Status",
+      msg: errStatus.message
+    }]
+  }
+  next()
+}
+
+
+const validateTitleFormData = (req = request, res = response, next) => {
+  const { title } = req.body
+
+  !res.err && (res.err = [])
+
+  if (!title || title.trim() === '') {
+    const errTitle = new Error('El título no puede estar vacío')
+    res.err = [...res.err, {
+      errorValidation: "Title",
+      msg: errTitle.message
+    }]
+  }
+  next()
+}
+const validateDescriptionFormData = (req = request, res = response, next) => {
+  const { description } = req.body
+
+  !res.err && (res.err = [])
+
+  if (!description || description.trim() === '') {
+    const errTitle = new Error('La Descripción no puede estar vacía')
+    res.err = [...res.err, {
+      errorValidation: "Description",
+      msg: errTitle.message
+    }]
+  }
+  next()
+}
+
 export {
   validationError,
   validateUsername,
   validateEmail,
   validatePassword,
   validateTitle,
-  validateDescription
+  validateDescription,
+  validationStatus,
+  validateDescriptionFormData,
+  validateTitleFormData 
 }
