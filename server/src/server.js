@@ -1,6 +1,9 @@
 import express from 'express'
 import morgan from 'morgan'
 import cookieParser from 'cookie-parser'
+
+import cors from 'cors'
+
 import { dbConnect } from './db/db.js'
 
 import authRoutes from './routes/auth.routes.js'
@@ -22,6 +25,8 @@ class Server {
     this.app.use(express.json())
     this.app.use(cookieParser())
     this.app.use(morgan('dev'))
+    this.app.use(express.urlencoded({ extended: false }))
+    this.app.use(cors())
   }
   routes() {
     this.app.use('/api/auth', authRoutes)
