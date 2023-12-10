@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #1e1e1e;
+  color: #fafafa;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition ease-in-out delay-150 mt-4;
+  }
+  .btn-secondary {
+    @apply bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition ease-in-out delay-150 mt-4;
+  }
+  .btn-tertiary {
+    @apply bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition ease-in-out delay-150 mt-4;
+  }
+
+  .input-form {
+    @apply w-full py-2 mt-2  text-sm border text-gray-200 focus:outline-none focus:border-blue-500 bg-transparent rounded-md;
+  }
+  .input-form-error {
+    @apply text-red-500 text-xs italic capitalize;
+  }
+}
