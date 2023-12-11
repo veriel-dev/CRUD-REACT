@@ -8,6 +8,19 @@ body {
 }
 
 @layer components {
+  .color-primary {
+    @apply text-blue-500;
+  }
+  .color-secondary {
+    @apply text-gray-500;
+  }
+  .color-tertiary {
+    @apply text-gray-800;
+  }
+  .color-tertiary-dark {
+    @apply text-gray-900;
+  }
+
   .btn-primary {
     @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition ease-in-out delay-150 mt-4;
   }
@@ -17,11 +30,13 @@ body {
   .btn-tertiary {
     @apply bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition ease-in-out delay-150 mt-4;
   }
-
+  .form {
+    @apply flex flex-col sm:w-[350px] w-auto  mt-4 mb-4;
+  }
   .input-form {
-    @apply w-full py-2 mt-2  text-sm border text-gray-200 focus:outline-none focus:border-blue-500 bg-transparent rounded-md;
+    @apply w-full py-2 mt-2 text-sm border text-gray-200 focus:outline-none focus:border-blue-500 bg-transparent rounded-md;
   }
   .input-form-error {
-    @apply text-red-500 text-xs italic capitalize;
+    @apply text-red-500 text-xs italic capitalize sm:w-[350px] w-auto;
   }
 }

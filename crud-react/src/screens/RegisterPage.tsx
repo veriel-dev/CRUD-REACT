@@ -1,35 +1,26 @@
 
-import { useForm, SubmitHandler } from "react-hook-form"
+import { useForm, SubmitHandler, } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup/src/yup.js"
-import * as yup from "yup"
+
+
 import { AuthLayout, Button, Input, LogoAuth } from "../components"
-
-export type Inputs = {
-    username: string
-    password: string
-    email: string
-}
-
-const schema = yup.object().shape({
-    username: yup.string().required(),
-    password: yup.string().required(),
-    email: yup.string().email().required(),
-})
+import { schemaAuthRegister } from "../components/auth/validationSchema"
+import { Link } from "react-router-dom"
+import { InputsTypeRegister } from "../interfaces"
 
 export const RegisterPage = () => {
-
-    const { register, handleSubmit, formState: { errors } } = useForm<Inputs>({
-        resolver: yupResolver(schema),
+    const { register, handleSubmit, formState: { errors } } = useForm<InputsTypeRegister>({
+        resolver: yupResolver(schemaAuthRegister),
         mode: "onBlur",
     })
-    const onSubmit: SubmitHandler<Inputs> = data => console.log(data)
+    const onSubmit: SubmitHandler<InputsTypeRegister> = data => console.log(data)
     return (
         <AuthLayout>
             {/* LOGO */}
             <div className="flex flex-col">
                 <LogoAuth />
             </div>
-            <form className="flex flex-col md:w-[350px] w-auto  mt-4 mb-4" onSubmit={handleSubmit(onSubmit)}>
+            <form className="form" onSubmit={handleSubmit(onSubmit)}>
                 {/* UserName */}
                 <Input
                     type={"text"}
@@ -62,6 +53,13 @@ export const RegisterPage = () => {
                 />
                 {/* Submit */}
                 <Button style={"btn-primary"} text={"Registrarse"} type={"submit"} />
+
+                {/* Link */}
+                <div className="flex justify-center mt-4">
+                    <div className="text-sm text-gray-400">
+                        ¿Ya tienes una cuenta? <Link to={'/auth/login'} className="text-gray-200 font-bold hover:underline">Inicia sesión</Link>
+                    </div>
+                </div>
             </form>
         </AuthLayout>
     )

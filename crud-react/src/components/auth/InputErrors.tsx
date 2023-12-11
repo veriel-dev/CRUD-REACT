@@ -1,18 +1,17 @@
-import { FC } from "react"
-import { Inputs } from "../../screens"
 import { FieldErrors } from "react-hook-form"
+import { InputsType } from "../../interfaces"
 
 
-interface Props {
-    errors: FieldErrors<Inputs>
-    name: "email" | "password" | "username"
+interface Props<T extends InputsType> {
+    errors: FieldErrors<T>
+    name: keyof T
 }
-export const InputErrors: FC<Props> = ({ errors, name }) => {
+export const InputErrors = <T extends InputsType>({ errors, name }: Props<T>) => {
     return (
         <>
             {
                 errors[name]?.message && (
-                    <span className="input-form-error">{errors[name]?.message}</span>
+                    <span className="input-form-error">{String(errors[name]?.message)}</span>
                 )
             }
         </>
