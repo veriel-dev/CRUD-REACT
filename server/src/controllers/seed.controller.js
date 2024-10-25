@@ -4,7 +4,7 @@ import { hashPassword } from "../libs/hashPassword.js"
 import Task from "../models/task.model.js"
 import User from "../models/user.model.js"
 
-const createUserSeed = async (req = request, res = response) => {
+const createUserSeed = async (_req = request, res = response) => {
   
     const users = seedDataUsers
 

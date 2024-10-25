@@ -39,7 +39,7 @@ const authLogin = async (req = request, res = response) => {
   res.status(200).json({
     ok: true,
     msg: 'Login realizado correctamente',
-    user,
+    user
   })
 }
 const authRegister = async (req = request, res = response) => {
@@ -59,6 +59,7 @@ const authRegister = async (req = request, res = response) => {
 
   user.password = hashPassword(password)
 
+
   const token = await createAccessToken(user._id, user.role)
   res.cookie('token', token)
 
@@ -68,7 +69,7 @@ const authRegister = async (req = request, res = response) => {
     res.status(201).json({
       ok: true,
       msg: 'Usuario creado correctamente',
-      user
+      user,
     })
   } catch (error) {
     console.log(error.message)
