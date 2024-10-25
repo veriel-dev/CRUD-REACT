@@ -1,16 +1,18 @@
-import { Bell, Settings } from "lucide-react"
+import { Bell, Settings, Shield } from "lucide-react"
 import { UserProfile } from "./DashboardTask"
+import { Link } from "react-router-dom"
 
 
 
-export const NavBar = ({user}: {user: UserProfile}) => {
+export const NavBar = ({ user }: { user: UserProfile }) => {
     return (
         <nav className="bg-gray-800 shadow-sm">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
-                    <div className="flex items-center">
-                        <span className="text-xl font-bold text-gray-200">Dashboard</span>
-                    </div>
+                    <Link to={"/"} className="flex items-center space-x-2">
+                        <Shield className="w-8 h-8 text-blue-600" />
+                        <span className="text-xl font-bold text-gray-200">SecureAuth</span>
+                    </Link>
 
                     <div className="flex items-center space-x-4">
                         <button className="p-2 text-gray-400 hover:text-gray-500">

@@ -7,39 +7,16 @@ import { AuthLayout, Button, ButtonComeBackHome, Input, LogoAuth } from "../comp
 import { schemaAuthLogin } from "../components/auth/validationSchema"
 import { Link } from "react-router-dom"
 import { InputsTypeLogin } from "../interfaces"
+import { useAuth } from "../hooks/useAuth"
 
 export const LoginPage = () => {
+    const {login} = useAuth()
     const { register, handleSubmit, formState: { errors } } = useForm<InputsTypeLogin>({
         resolver: yupResolver(schemaAuthLogin),
         mode: "onBlur",
     })
-    const onSubmit: SubmitHandler<InputsTypeLogin> = async (data) => {
-        const { email, password} = data
-        try {
-            const response = await fetch("http://localhost:5000/api/auth/login", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                credentials: 'include',
-                body: JSON.stringify({
-                    email,
-                    password
-                })
-            })
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.msg || 'Error en el login');
-            }
-            console.log({data})
-            return data
-
-        } catch (error) {
-            console.error('Error en el login:', error);
-            throw error;
-        }
-    }
+    
+    const onSubmit: SubmitHandler<InputsTypeLogin> = async (data) => login(data.email, data.password)
     return (
         <AuthLayout>
             {/* LOGO */}
@@ -75,9 +52,9 @@ export const LoginPage = () => {
                     <div className="text-sm text-gray-400">
                         ¿No tienes una cuenta? <Link to={'/auth/register'} className="text-gray-200 font-bold hover:underline">Regístrate</Link>
                     </div>
-                    
+
                 </div>
-               <ButtonComeBackHome />
+                <ButtonComeBackHome />
             </form>
         </AuthLayout>
     )

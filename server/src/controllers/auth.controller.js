@@ -9,11 +9,7 @@ import { createAccessToken } from "../libs/jwt.js"
 
 
 const authLogin = async (req = request, res = response) => {
-
-  /* 1. Validaciones de Middlweware */
   const { email, password } = req.body
-
-  /* 2. Comprobar si el usuario existe con ese email */
   const user = await User.findOne({ email })
 
   if (!user) {
@@ -22,7 +18,6 @@ const authLogin = async (req = request, res = response) => {
       msg: 'El usuario no existe'
     })
   }
-  /* 3. Comprobar si el password es correcto */
   const isMatchPassword = await brcrypt.compare(password, user.password)
 
   if (!isMatchPassword) {
@@ -32,14 +27,13 @@ const authLogin = async (req = request, res = response) => {
     })
   }
 
-  /* 4. Generar el token */
   const token = await createAccessToken(user._id, user.role)
   res.cookie('token', token)
 
   res.status(200).json({
     ok: true,
     msg: 'Login realizado correctamente',
-    user
+    token
   })
 }
 const authRegister = async (req = request, res = response) => {
