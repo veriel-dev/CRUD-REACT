@@ -11,6 +11,11 @@ import tastksRoutes from './routes/tasks.routes.js'
 import seedRoutes from './routes/seed.routes.js'
 import userRoutes from './routes/user.routes.js'
 
+const allowedOrigins = [
+  'http://127.0.0.1:5173',
+  'http://localhost:5173',
+];
+
 class Server {
   constructor() {
     this.app = express()
@@ -26,7 +31,20 @@ class Server {
     this.app.use(cookieParser())
     this.app.use(morgan('dev'))
     this.app.use(express.urlencoded({ extended: false }))
-    this.app.use(cors())
+    this.app.use(cors({
+      origin: function(origin, callback) {
+        if (!origin) return callback(null, true);
+        
+        if (allowedOrigins.indexOf(origin) === -1) {
+          const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+          return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+      },
+      credentials: true,
+      methods: ['GET', 'POST', 'PUT', 'DELETE'],
+      allowedHeaders: ['Content-Type', 'Authorization']
+    }))
   }
   routes() {
     this.app.use('/api/auth', authRoutes)

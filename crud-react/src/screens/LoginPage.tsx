@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup/src/yup.js"
 
 
-import { AuthLayout, Button, Input, LogoAuth } from "../components"
+import { AuthLayout, Button, ButtonComeBackHome, Input, LogoAuth } from "../components"
 import { schemaAuthLogin } from "../components/auth/validationSchema"
 import { Link } from "react-router-dom"
 import { InputsTypeLogin } from "../interfaces"
@@ -13,7 +13,33 @@ export const LoginPage = () => {
         resolver: yupResolver(schemaAuthLogin),
         mode: "onBlur",
     })
-    const onSubmit: SubmitHandler<InputsTypeLogin> = data => console.log(data)
+    const onSubmit: SubmitHandler<InputsTypeLogin> = async (data) => {
+        const { email, password} = data
+        try {
+            const response = await fetch("http://localhost:5000/api/auth/login", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            })
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.msg || 'Error en el login');
+            }
+            console.log({data})
+            return data
+
+        } catch (error) {
+            console.error('Error en el login:', error);
+            throw error;
+        }
+    }
     return (
         <AuthLayout>
             {/* LOGO */}
@@ -44,12 +70,14 @@ export const LoginPage = () => {
                 {/* Submit */}
                 <Button style={"btn-primary"} text={"Iniciar Sesión"} type={"submit"} />
 
-                {/* Link */}
+                {/* Links */}
                 <div className="flex justify-center mt-4">
                     <div className="text-sm text-gray-400">
                         ¿No tienes una cuenta? <Link to={'/auth/register'} className="text-gray-200 font-bold hover:underline">Regístrate</Link>
                     </div>
+                    
                 </div>
+               <ButtonComeBackHome />
             </form>
         </AuthLayout>
     )

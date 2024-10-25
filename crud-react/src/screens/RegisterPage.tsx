@@ -3,7 +3,7 @@ import { useForm, SubmitHandler, } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup/src/yup.js"
 
 
-import { AuthLayout, Button, Input, LogoAuth } from "../components"
+import { AuthLayout, Button, ButtonComeBackHome, Input, LogoAuth } from "../components"
 import { schemaAuthRegister } from "../components/auth/validationSchema"
 import { Link } from "react-router-dom"
 import { InputsTypeRegister } from "../interfaces"
@@ -60,6 +60,7 @@ export const RegisterPage = () => {
                         ¿Ya tienes una cuenta? <Link to={'/auth/login'} className="text-gray-200 font-bold hover:underline">Inicia sesión</Link>
                     </div>
                 </div>
+                <ButtonComeBackHome />
             </form>
         </AuthLayout>
     )
