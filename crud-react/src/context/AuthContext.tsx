@@ -16,6 +16,7 @@ interface TypeAuthContext {
     checkAuth: () => Promise<boolean>
     isAuthenticated: boolean
     loading: boolean
+    logOut: () => Promise<void>
 }
 
 export const AuthContext = createContext({} as TypeAuthContext)

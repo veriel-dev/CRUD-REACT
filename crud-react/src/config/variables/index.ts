@@ -10,6 +10,7 @@ export const API = {
     auth: {
         login: createApiEndpoint('/auth/login'),
         register: createApiEndpoint('/auth/register'),
-        profile: createApiEndpoint('/auth/profile')
+        profile: createApiEndpoint('/auth/profile'),
+        logOut: createApiEndpoint("/auth/logout")
     }
 };

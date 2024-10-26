@@ -9,6 +9,7 @@ import { Link } from "react-router-dom"
 import { InputsTypeLogin } from "../interfaces"
 import { useAuth } from "../hooks/useAuth"
 
+
 export const LoginPage = () => {
     const {login} = useAuth()
     const { register, handleSubmit, formState: { errors } } = useForm<InputsTypeLogin>({
