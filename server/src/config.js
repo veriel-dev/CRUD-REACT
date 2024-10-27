@@ -161,10 +161,4 @@ const seedDataUsers = [
   }
   
 ];
-const configCookies = {
-  httpOnly: true,
-  secure: true,
-  sameSite: "strict",
-  maxAge: 12 * 60 * 60 * 1000
-}
-export { colors, statusTask, seedDataTasks, seedDataUsers, configCookies };
+export { colors, statusTask, seedDataTasks, seedDataUsers };

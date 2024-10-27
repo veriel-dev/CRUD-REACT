@@ -1,5 +1,5 @@
 import { Bell, Settings, Shield } from "lucide-react"
-import { UserProfile } from "./DashboardTask"
+import { UserProfile } from "./Dashboard"
 import { Link } from "react-router-dom"
 
 

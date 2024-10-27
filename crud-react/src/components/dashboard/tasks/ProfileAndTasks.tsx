@@ -1,4 +1,4 @@
-import { UserProfile } from "../DashboardTask"
+import { UserProfile } from "../Dashboard"
 import { ProfileCard } from "./ProfileCard"
 import { TaskList } from "./TaskList"
 

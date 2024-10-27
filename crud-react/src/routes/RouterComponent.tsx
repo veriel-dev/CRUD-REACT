@@ -1,7 +1,7 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom"
 import { HomePage, LoginPage, RegisterPage } from "../screens"
-import { DashboardTask } from "../components/tasks"
-import { useAuth } from "../hooks/useAuth"
+import { DashboardTask } from "../components/dashboard"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 const PUBLIC_ROUTES = {
     HOME: '/',
@@ -17,12 +17,12 @@ interface RouteGuardProps {
 
 export const LoadingScreen = () => (
     <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900" />
+        <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-blue-400" />
     </div>
 );
 
 const AuthGuard = ({ children }: RouteGuardProps) => {
-    const { isAuthenticated, loading } = useAuth();
+    const { isAuthenticated, loading } = useAuthContext();
 
     if (loading) return <LoadingScreen />;
 
@@ -34,7 +34,7 @@ const AuthGuard = ({ children }: RouteGuardProps) => {
 };
 
 const PrivateGuard = ({ children }: RouteGuardProps) => {
-    const { isAuthenticated, loading } = useAuth();
+    const { isAuthenticated, loading } = useAuthContext();
     const location = useLocation();
 
     if (loading) return <LoadingScreen />;

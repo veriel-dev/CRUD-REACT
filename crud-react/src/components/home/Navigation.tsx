@@ -1,7 +1,8 @@
 import { Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
 import { LoadingScreen } from '../../routes';
+import { useAuthContext } from '../../hooks/useAuthContext';
+
 
 export const Navigation = () => {
     return (
@@ -17,7 +18,8 @@ export const Navigation = () => {
 
 
 const NavButton = () => {
-    const { isAuthenticated, loading, logOut } = useAuth();
+    const { isAuthenticated, loading, logout } = useAuthContext();
+
     if (loading) return <LoadingScreen />;
     return (
 
@@ -29,7 +31,7 @@ const NavButton = () => {
                             <Link to={"/tasks"} className="btn-primary">
                                 Tasks
                             </Link>
-                            <button className='btn-secondary' onClick={logOut}>Cerrar sesión</button>
+                            <button className='btn-secondary' onClick={logout}>Cerrar sesión</button>
                         </div>
                     </>
                 ) : (

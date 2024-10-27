@@ -1,4 +1,4 @@
-import { UserProfile } from "../DashboardTask"
+import { UserProfile } from "../Dashboard"
 
 export const ProfileCard = ({user}:{user:UserProfile}) => {
     return (

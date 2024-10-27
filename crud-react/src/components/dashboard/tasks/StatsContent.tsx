@@ -1,5 +1,5 @@
 import { CheckCircle, Clock, XCircle } from "lucide-react"
-import { UserProfile } from "../DashboardTask"
+import { UserProfile } from "../Dashboard"
 
 interface StatusTaskStats {
     status: "completed" | "pending" | "overdue"

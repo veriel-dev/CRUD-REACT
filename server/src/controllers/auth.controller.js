@@ -4,7 +4,6 @@ import brcrypt from "bcryptjs";
 import User from "../models/user.model.js";
 import { hashPassword } from "../libs/hashPassword.js";
 import { createAccessToken } from "../libs/jwt.js";
-import { configCookies } from "../config.js";
 
 const authLogin = async (req = request, res = response) => {
   const { email, password } = req.body;
@@ -26,7 +25,6 @@ const authLogin = async (req = request, res = response) => {
   }
 
   const token = await createAccessToken(user._id, user.role);
-  res.cookie("token", token, configCookies);
 
   res.status(200).json({
     ok: true,
@@ -50,8 +48,7 @@ const authRegister = async (req = request, res = response) => {
   user.password = hashPassword(password);
 
   const token = await createAccessToken(user._id, user.role);
-  res.cookie("token", token, configCookies);
-
+  
   try {
     await user.save();
     res.status(201).json({
@@ -69,25 +66,13 @@ const authRegister = async (req = request, res = response) => {
 };
 
 const logout = (req = request, res = response) => {
-  if (!Object.keys(req.cookies).length) {
-    return res.status(200).json({
-        ok: true,
-        msg: "No tienes ninguna sesión activa"
-    });
-  }
-  
-  res.clearCookie("token", "", {
-    expires: new Date(0),
-  });
-
-  return res.status(200).json({
-    ok: true,
-    msg: "Cierre de sesión de forma correcta",
-  });
+  console.log("Log Out")
 };
 
 const profile = async (req = request, res = response) => {
+
   const user = await User.findById(req.user.id);
+  
   if (!user) {
     return res.status(400).json({
       ok: false,

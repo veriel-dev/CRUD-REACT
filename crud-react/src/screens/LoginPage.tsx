@@ -7,11 +7,11 @@ import { AuthLayout, Button, ButtonComeBackHome, Input, LogoAuth } from "../comp
 import { schemaAuthLogin } from "../components/auth/validationSchema"
 import { Link } from "react-router-dom"
 import { InputsTypeLogin } from "../interfaces"
-import { useAuth } from "../hooks/useAuth"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 
 export const LoginPage = () => {
-    const {login} = useAuth()
+    const {login} = useAuthContext()
     const { register, handleSubmit, formState: { errors } } = useForm<InputsTypeLogin>({
         resolver: yupResolver(schemaAuthLogin),
         mode: "onBlur",

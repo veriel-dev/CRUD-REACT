@@ -1,18 +1,7 @@
 
+import { UserProfile } from "./interfaces";
 import { MainContent } from "./MainContent";
 import { NavBar } from "./NavBar"
-
-export interface UserProfile {
-    name: string;
-    email: string;
-    role: string;
-    avatar: string;
-    taskStats: {
-        completed: number;
-        pending: number;
-        overdue: number;
-    };
-}
 
 
 export const DashboardTask = () => {
@@ -31,7 +20,8 @@ export const DashboardTask = () => {
         <div className="min-h-screen bg-gray-900">
             <NavBar user={user}/>
             <MainContent user={user} />
-            
         </div>
     )
 }
+
+
