@@ -12,5 +12,10 @@ export const API = {
         register: createApiEndpoint('/auth/register'),
         profile: createApiEndpoint('/auth/profile'),
         logOut: createApiEndpoint("/auth/logout")
+    },
+    user: {
+        getallusers: createApiEndpoint("/users"),
+        deleteUserById: createApiEndpoint("/users"),
+        updateeUserById: createApiEndpoint("/users")
     }
 };

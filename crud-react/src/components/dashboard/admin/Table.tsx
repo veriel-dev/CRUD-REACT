@@ -1,16 +1,10 @@
-import { CheckCircle, MoreVertical, Shield, XCircle } from "lucide-react";
+import { CheckCircle, Shield, XCircle } from "lucide-react";
+import { TypeUser } from "../../../context";
+import { MenuActionUser } from "./MenuActionUser";
 
 
 interface Props {
-    filteredUsers: {
-        id: number;
-        name: string;
-        email: string;
-        role: string;
-        status: string;
-        lastLogin: string;
-        created: string;
-    }[],
+    filteredUsers: TypeUser[],
     getRoleColor: (role: string) => "bg-purple-500/10 text-purple-500" | "bg-blue-500/10 text-blue-500",
     getStatusColor: (status: string) => "text-green-500" | "text-red-500"
 }
@@ -31,17 +25,17 @@ export const Table = ({ filteredUsers, getRoleColor, getStatusColor }: Props) =>
                 <tbody>
                     {
                         filteredUsers.map((user) => (
-                            <tr key={user.id} className="border-b border-gray-700 hover:bg-gray-700/50">
+                            <tr key={user.uid} className="border-b border-gray-700 hover:bg-gray-700/50">
                                 {/* User - Email */}
                                 <td className="py-3 px-4">
                                     <div className="flex items-center gap-3">
                                         <div className="h-8 w-8 rounded-full bg-gray-700 flex items-center justify-center">
                                             <span className="text-sm font-medium text-slate-300">
-                                                {user.name.charAt(0)}
+                                                {user.username.charAt(0)}
                                             </span>
                                         </div>
                                         <div>
-                                            <div className="font-medium text-slate-200">{user.name}</div>
+                                            <div className="font-medium text-slate-200">{user.username}</div>
                                             <div className="text-sm text-slate-400">{user.email}</div>
                                         </div>
                                     </div>
@@ -67,12 +61,12 @@ export const Table = ({ filteredUsers, getRoleColor, getStatusColor }: Props) =>
                                     </span>
                                 </td>
                                 {/* Date */}
-                                <td className="py-3 px-4 text-sm text-slate-300">{user.lastLogin}</td>
-                                <td className="py-3 px-4 text-sm text-slate-300">{user.created}</td>
+                                <td className="py-3 px-4 text-sm text-slate-300">{user.updatedAt}</td>
+                                <td className="py-3 px-4 text-sm text-slate-300">{user.createdAt}</td>
                                 <td className="py-3 px-4">
                                     <div className="flex justify-end">
                                         <button className="p-1 hover:bg-slate-600 rounded">
-                                            <MoreVertical className="h-4 w-4 text-slate-400" />
+                                            <MenuActionUser user={user}/>
                                         </button>
                                     </div>
                                 </td>

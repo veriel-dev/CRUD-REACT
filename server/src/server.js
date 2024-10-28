@@ -10,6 +10,8 @@ import authRoutes from './routes/auth.routes.js'
 import tastksRoutes from './routes/tasks.routes.js'
 import seedRoutes from './routes/seed.routes.js'
 import userRoutes from './routes/user.routes.js'
+import statsRoutes from "./routes/stats.route.js"
+import { apiMonitorMiddleware} from './libs/apiMonitor.js'
 
 const allowedOrigins = [
   'http://127.0.0.1:5173',
@@ -45,12 +47,15 @@ class Server {
       methods: ['GET', 'POST', 'PUT', 'DELETE'],
       allowedHeaders: ['Content-Type', 'Authorization']
     }))
+    this.app.use(apiMonitorMiddleware)
   }
+  
   routes() {
     this.app.use('/api/auth', authRoutes)
     this.app.use('/api/tasks', tastksRoutes)
     this.app.use('/api/seed', seedRoutes)
     this.app.use('/api/users', userRoutes)
+    this.app.use('/api/stats', statsRoutes)
   }
 
   async dbConnection() {

@@ -1,5 +1,5 @@
 export interface AuthState {
-    user: TypeUser | null;
+    user: TypeUser;
     isAuthenticated: boolean;
     loading: boolean;
 }
@@ -18,4 +18,5 @@ export interface TypeUser {
     createdAt: string
     updatedAt: string
     uid: string
+    status: "active" | "inactive"
 }

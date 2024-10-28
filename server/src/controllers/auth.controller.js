@@ -7,6 +7,10 @@ import { createAccessToken } from "../libs/jwt.js";
 
 const authLogin = async (req = request, res = response) => {
   const { email, password } = req.body;
+  console.log({
+    email,
+    password
+  })
   const user = await User.findOne({ email });
 
   if (!user) {
@@ -16,6 +20,9 @@ const authLogin = async (req = request, res = response) => {
     });
   }
   const isMatchPassword = await brcrypt.compare(password, user.password);
+  console.log({
+    isMatchPassword
+  })
 
   if (!isMatchPassword) {
     return res.status(400).json({

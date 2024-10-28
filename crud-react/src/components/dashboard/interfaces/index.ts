@@ -1,11 +1,9 @@
 export interface UserProfile {
-    name: string;
+    username: string;
     email: string;
-    role: string;
-    avatar: string;
-    taskStats: {
-        completed: number;
-        pending: number;
-        overdue: number;
-    };
-}
+    role: "admin" | "user";
+    status: "active" | "inactive";
+    createdAt: string;
+    updatedAt: string;
+    uid: string;
+} 

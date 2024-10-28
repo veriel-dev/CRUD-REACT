@@ -1,4 +1,5 @@
-import { UserProfile } from "../Dashboard"
+import { UserProfile } from "../interfaces"
+
 
 export const ProfileCard = ({user}:{user:UserProfile}) => {
     return (
@@ -8,11 +9,11 @@ export const ProfileCard = ({user}:{user:UserProfile}) => {
                     <div className="text-center">
                         <img
                             className="mx-auto h-20 w-20 rounded-full"
-                            src={user.avatar}
-                            alt={user.name}
+                            src={"https://www.claudeusercontent.com/api/placeholder/40/40"}
+                            alt={user.username}
                         />
-                        <h2 className="mt-4 text-xl font-bold text-gray-200">{user.name}</h2>
-                        <p className="text-sm text-gray-400">{user.role}</p>
+                        <h2 className="mt-4 text-xl font-bold text-gray-200">{user.username}</h2>
+                        <p className="text-sm text-gray-400">{user.role.toUpperCase()}</p>
                     </div>
                     <div className="mt-6 border-t border-gray-200 pt-4">
                         <div className="flex items-center justify-between">

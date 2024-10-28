@@ -11,7 +11,7 @@ function App() {
           <RouterComponent />
         </AuthProvider>
       </BrowserRouter>
-      <ToastContainer position="top-center" theme="dark" />
+      <ToastContainer position="bottom-right" theme="dark" />
     </>
   )
 }

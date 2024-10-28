@@ -1,6 +1,6 @@
 import { Bell, Settings, Shield } from "lucide-react"
-import { UserProfile } from "./Dashboard"
 import { Link } from "react-router-dom"
+import { UserProfile } from "./interfaces"
 
 
 
@@ -24,10 +24,10 @@ export const NavBar = ({ user }: { user: UserProfile }) => {
                         <div className="flex items-center space-x-3">
                             <img
                                 className="w-8 h-8 rounded-full"
-                                src={user.avatar}
-                                alt={user.name}
+                                src={"https://www.claudeusercontent.com/api/placeholder/40/40"}
+                                alt={user.username}
                             />
-                            <span className="text-sm font-medium text-gray-200">{user.name}</span>
+                            <span className="text-sm font-medium text-gray-200">{user.username}</span>
                         </div>
                     </div>
                 </div>

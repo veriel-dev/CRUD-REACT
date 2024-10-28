@@ -1,27 +1,27 @@
 import { CheckCircle, Clock, XCircle } from "lucide-react"
-import { UserProfile } from "../Dashboard"
+
 
 interface StatusTaskStats {
     status: "completed" | "pending" | "overdue"
     value: number
     title: string
 }
-export const StatsContent = ({ user }: { user: UserProfile }) => {
+export const StatsContent = () => {
     const statusTaskStats: StatusTaskStats[] = [
         {
             status: "completed",
-            value: user.taskStats.completed,
+            value: 12,
             title: "Tareas Completadas"
 
         },
         {
             status: "pending",
-            value: user.taskStats.pending,
+            value: 24,
             title: "Tareas Pendientes"
         },
         {
             status: "overdue",
-            value: user.taskStats.overdue,
+            value: 36,
             title: "Tareas vencidas"
         }
     ]

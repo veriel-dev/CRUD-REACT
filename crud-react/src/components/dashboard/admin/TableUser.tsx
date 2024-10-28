@@ -2,58 +2,14 @@ import { useState } from "react";
 import { ButtonsActions } from "./ButtonsActions";
 import { SearchBar } from "./SearchBar";
 import { Table } from "./Table";
+import { useUsers } from "../../../hooks/useUsers";
 
-export const TableUser = () => {
+export const TableUser =  () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const users = [
-        {
-            id: 1,
-            name: 'Carlos Martínez',
-            email: 'carlos@ejemplo.com',
-            role: 'admin',
-            status: 'active',
-            lastLogin: '2024-10-26 15:30',
-            created: '2024-01-15'
-        },
-        {
-            id: 2,
-            name: 'María González',
-            email: 'maria@ejemplo.com',
-            role: 'user',
-            status: 'active',
-            lastLogin: '2024-10-25 09:45',
-            created: '2024-02-20'
-        },
-        {
-            id: 3,
-            name: 'Juan Pérez',
-            email: 'juan@ejemplo.com',
-            role: 'admin',
-            status: 'inactive',
-            lastLogin: '2024-10-20 11:20',
-            created: '2024-03-05'
-        },
-        {
-            id: 4,
-            name: 'Laura Sánchez',
-            email: 'laura@ejemplo.com',
-            role: 'user',
-            status: 'active',
-            lastLogin: '2024-10-26 16:15',
-            created: '2024-03-10'
-        },
-        {
-            id: 5,
-            name: 'Roberto López',
-            email: 'roberto@ejemplo.com',
-            role: 'user',
-            status: 'active',
-            lastLogin: '2024-10-24 14:30',
-            created: '2024-04-01'
-        }
-    ];
-    const filteredUsers = users.filter(user =>
-        user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    const {users} = useUsers()
+
+    const filteredUsers = users?.filter(user =>
+        user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.role.toLowerCase().includes(searchTerm.toLowerCase())
     );

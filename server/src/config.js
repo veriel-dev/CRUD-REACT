@@ -109,6 +109,7 @@ const seedDataUsers = [
     email: "sparky@gmail.com",
     password: "12345678",
     role: "admin",
+    status: "active"
   },
   {
     _id: new mongoose.Types.ObjectId(),
@@ -116,6 +117,7 @@ const seedDataUsers = [
     email: "reina@gmail.com",
     password: "12345678",
     role: "user",
+    status: "inactive"
   },
   {
     _id: new mongoose.Types.ObjectId(),
@@ -158,6 +160,7 @@ const seedDataUsers = [
     email: "programmer@gmail.com",
     password: "12345678",
     role: "admin",
+    status: "active"
   }
   
 ];
