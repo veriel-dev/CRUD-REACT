@@ -45,9 +45,10 @@ class Server {
     this.app.use(cors({
       origin: function(origin, callback) {
         const origins = getOrigins();
+        console.log({origins})
         if (!origin) return callback(null, true);
         
-        if (origins.indexOf(origin) === -1) {
+        if (!origins.includes(origin)) {
           const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
           return callback(new Error(msg), false);
         }
