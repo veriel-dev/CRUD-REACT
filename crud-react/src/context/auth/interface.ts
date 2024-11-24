@@ -1,5 +1,5 @@
 export interface AuthState {
-    user: TypeUser;
+    user: TypeUser | undefined | null;
     isAuthenticated: boolean;
     loading: boolean;
 }
