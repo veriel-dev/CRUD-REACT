@@ -17,15 +17,14 @@ const allowedOrigins = {
   development: [
     process.env.URL_FRONTEND_DEV,
   ],
-  production: [
-    process.env.URL_FRONTEND,
-    process.env.URL_FRONTEND_V2
-  ]
+  production: [process.env.URL_FRONTEND,process.env.URL_FRONTEND_V2 ]
 };
 
 const getOrigins = () => {
   const env = process.env.NODE_ENV || 'development';
-  return allowedOrigins[env].filter(origin => origin);
+  return allowedOrigins[env]
+    .filter(origin => origin)
+    .map(origin => origin.replace(/;/g, '').trim()); // Limpia punto y coma y espacios
 };
 class Server {
   constructor() {
@@ -45,7 +44,6 @@ class Server {
     this.app.use(cors({
       origin: function(origin, callback) {
         const origins = getOrigins();
-        console.log({origins, origin})
         if (!origin) return callback(null, true);
         
         if (!origins.includes(origin)) {
