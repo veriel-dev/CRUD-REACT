@@ -18,7 +18,8 @@ const allowedOrigins = {
     process.env.URL_FRONTEND_DEV,
   ],
   production: [
-    process.env.URL_FRONTEND
+    process.env.URL_FRONTEND,
+    process.env.URL_FRONTEND_V2
   ]
 };
 
