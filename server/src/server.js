@@ -45,7 +45,7 @@ class Server {
     this.app.use(cors({
       origin: function(origin, callback) {
         const origins = getOrigins();
-        console.log({origins})
+        console.log({origins, origin})
         if (!origin) return callback(null, true);
         
         if (!origins.includes(origin)) {
