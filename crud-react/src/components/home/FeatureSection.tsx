@@ -1,4 +1,4 @@
-import { Shield, Users, Lock, LucideIcon } from "lucide-react"
+import { Users,  LucideIcon, LockKeyhole,  Clock } from "lucide-react"
 
 
 interface TypeFeature {
@@ -9,17 +9,17 @@ interface TypeFeature {
 export const FeatureSection = () => {
     const features:TypeFeature[] = [
         {
-            icon: Shield,
-            title: "Seguridad Avanzada",
-            description: "Implementamos las últimas prácticas de seguridad para proteger tus datos."
+            icon: LockKeyhole,
+            title: "Control Total",
+            description: "Gestiona usuarios, roles y permisos con facilidad. Monitorea el uso de la API y las métricas clave de tu aplicación."
         }, {
             icon: Users,
-            title: "Gestión de Usuario",
+            title: "Gestión de Tareas",
             description: "Administra fácilmente los usuarios y sus permisos en tu aplicación."
         }, {
-            icon: Lock,
-            title: "Autenticación Flexible",
-            description: "Múltiples métodos de autenticación adaptados a tus necesidades."
+            icon: Clock,
+            title: "Análisis en Tiempo Real",
+            description: "Visualiza métricas clave como usuarios activos, uso de API y estado de las tareas en tiempo real."
         }
     ]
     return (

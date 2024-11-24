@@ -1,23 +1,23 @@
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useState } from 'react';
-    
+
 export const FaqSection = () => {
     const faqs = [
         {
-            question: "¿Cómo funciona el proceso de autenticación?",
-            answer: "Nuestro sistema utiliza JWT (JSON Web Tokens) para manejar la autenticación de forma segura. Una vez que el usuario inicia sesión, se genera un token que se utiliza para verificar su identidad en las solicitudes posteriores."
+            question: "¿Cómo funciona el sistema de roles y permisos?",
+            answer: "Nuestro sistema permite definir roles personalizados con diferentes niveles de acceso. Los administradores pueden asignar roles predefinidos (como Admin o User) o crear nuevos roles con permisos específicos. Cada usuario puede tener uno o varios roles, y los permisos se actualizan en tiempo real."
         },
         {
-            question: "¿Qué medidas de seguridad implementan?",
-            answer: "Implementamos múltiples capas de seguridad, incluyendo encriptación de contraseñas con bcrypt, protección contra ataques XSS y CSRF, y monitoreo continuo de actividades sospechosas."
+            question: "¿Qué tipos de métricas puedo monitorear?",
+            answer: "El dashboard proporciona métricas clave como número de usuarios activos, tendencias de crecimiento mensual, uso de API (peticiones/día), estado de tareas (completadas, pendientes, vencidas) y estadísticas de autenticación. Todas las métricas se actualizan en tiempo real y pueden exportarse para análisis detallados."
         },
         {
-            question: "¿Puedo integrar autenticación con redes sociales?",
-            answer: "Sí, ofrecemos integración con varios proveedores de autenticación social como Google, Facebook y GitHub. Esto proporciona una experiencia de inicio de sesión más conveniente para tus usuarios."
+            question: "¿Cómo puedo integrar el sistema con mis aplicaciones existentes?",
+            answer: "Ofrecemos una API RESTful completa y SDKs para las principales plataformas. La integración incluye autenticación OAuth con servicios populares como Google y GitHub, y una documentación detallada de todos los endpoints disponibles. El proceso típico de integración toma menos de 30 minutos."
         },
         {
-            question: "¿Ofrecen soporte técnico?",
-            answer: "Sí, proporcionamos soporte técnico completo a través de nuestro sistema de tickets y documentación detallada. También contamos con un foro de comunidad activo."
+            question: "¿Ofrecen soporte técnico para la implementación?",
+            answer: "Sí, proporcionamos soporte técnico completo a través de múltiples canales. Esto incluye documentación detallada, guías de implementación, soporte por correo electrónico con tiempo de respuesta garantizado de 24 horas, y asistencia directa para la configuración inicial del sistema."
         }
     ];
     return (
@@ -32,7 +32,7 @@ export const FaqSection = () => {
     )
 }
 
-const FAQItem = ({ question, answer }:{question:string, answer: string}) => {
+const FAQItem = ({ question, answer }: { question: string, answer: string }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -43,9 +43,9 @@ const FAQItem = ({ question, answer }:{question:string, answer: string}) => {
             >
                 <span className="text-lg font-medium text-gray-200">{question}</span>
                 {isOpen ? (
-                <ChevronUp className="w-5 h-5 text-gray-400" />
+                    <ChevronUp className="w-5 h-5 text-gray-400" />
                 ) : (
-                <ChevronDown className="w-5 h-5 text-gray-400" />
+                    <ChevronDown className="w-5 h-5 text-gray-400" />
                 )}
             </button>
             {isOpen && (
@@ -53,5 +53,6 @@ const FAQItem = ({ question, answer }:{question:string, answer: string}) => {
                     {answer}
                 </div>
             )}
-    </div>
-)}
+        </div>
+    )
+}
