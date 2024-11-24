@@ -13,11 +13,19 @@ import userRoutes from './routes/user.routes.js'
 import statsRoutes from "./routes/stats.route.js"
 import { apiMonitorMiddleware} from './libs/apiMonitor.js'
 
-const allowedOrigins = [
-  'http://127.0.0.1:5173',
-  'http://localhost:5173',
-];
+const allowedOrigins = {
+  development: [
+    process.env.URL_FRONTEND_DEV,
+  ],
+  production: [
+    process.env.URL_FRONTEND
+  ]
+};
 
+const getOrigins = () => {
+  const env = process.env.NODE_ENV || 'development';
+  return allowedOrigins[env].filter(origin => origin);
+};
 class Server {
   constructor() {
     this.app = express()
@@ -35,9 +43,10 @@ class Server {
     this.app.use(express.urlencoded({ extended: false }))
     this.app.use(cors({
       origin: function(origin, callback) {
+        const origins = getOrigins();
         if (!origin) return callback(null, true);
         
-        if (allowedOrigins.indexOf(origin) === -1) {
+        if (origins.indexOf(origin) === -1) {
           const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
           return callback(new Error(msg), false);
         }
